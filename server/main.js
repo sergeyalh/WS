@@ -60,7 +60,7 @@ app.post('/add', function(req, res) {
     }
 
     store[type].push({"name": name, "year": year, "description":description});
-	console.log("CREATE " + type + " " + name);
+		console.log("CREATE " + type + " " + name);
     res.send("Created: " + "sNewTypeYAY" + type + ' ' + name + ' ' + description);
 });
 
