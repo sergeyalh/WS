@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+	<script src="sdfd.js"></script>
+	<link rel="stylesheet" type="text/css" href="css.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+</head>
+
+<body onLoad="getAllItems()">
+<h1>Wish List MOFO</h1>
+<p>What i want to try.</p>
+<div id="wrapper">
+    <table id="myTable" border="1">
+	</table>
+
+	<form id="myFrom">
+		Type: <input id="typeInput" type="text" name="type" value="Type"><br>
+		Name: <input id="nameInput" type="text" name="name" value="Name"><br>
+		Description: <input id="descInput" type="text" name="Description" value="Description"><br>
+		Year: <input id="yearInput" type="text" name="year" value="Year"><br>
+		<input type="submit" value="Submit" onclick="saveItem()">
+	</form>
+</div>
+
+</body>
+</html>

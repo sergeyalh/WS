@@ -1,0 +1,62 @@
+/*---------------------Table-----------------------*/
+#myTable {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  border-color: #030303;
+  width: 60%;
+}
+
+#myTable .removeIcon {
+    width: 1rem;
+    background-color: #ddd;
+}
+
+#myTable td, #myTable th {
+  border: 7px solid #ddd;
+  padding: 8px;
+}
+
+#myTable tr:nth-child(even){background-color: #f2f2f2;}
+
+#myTable tr:hover {background-color: #ddd;}
+
+#myTable th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #af4c4c;
+  color: white;
+}
+/*---------------------Form-----------------------*/
+#myFrom {
+	width: 10%;
+	border: 1px solid #ddd;
+	border-color: #030303;
+	padding: 3px;
+}
+
+#myFrom input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+#myFrom input[type=text]:hover {background-color: #ddd;}
+
+#myFrom input[type=submit] {
+  width: 100%;
+  background-color: #af4c4c;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+/*---------------------Wrapper-----------------------*/
+#wrapper { display: flex; }
+
