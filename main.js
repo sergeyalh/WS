@@ -35,9 +35,6 @@ app.get('/items/:type/:id',function(req,res) {
 
 
 app.get('/:fileName',function(req,res) {
-		console.log("---------------------------------------------------------------------");
-		console.log((path.join(__dirname + '/client/' + req.params.fileName);
-		console.log("---------------------------------------------------------------------");
    	res.sendFile(path.join(__dirname + '/client/' + req.params.fileName));
 });
 
