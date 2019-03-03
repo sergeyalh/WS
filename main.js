@@ -35,7 +35,7 @@ app.get('/items/:type/:id',function(req,res) {
 
 
 app.get('/:fileName',function(req,res) {
-   	res.sendFile(path.join(__dirname + '/../client/' + req.params.fileName));
+   	res.sendFile(path.join(__dirname + '/client/' + req.params.fileName));
 });
 
 app.delete('/delete/:type/:name',function(req,res) {
