@@ -4,7 +4,7 @@ var bodyParser = require('body-parser');
 const app = express();
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
-const port = 3000;
+const port = process.env.PORT || 3000 ;
 var store = {
 	"games": [
 		{"name": "game1", "year":"1999", "description": "dsdasad"},
@@ -35,6 +35,9 @@ app.get('/items/:type/:id',function(req,res) {
 
 
 app.get('/:fileName',function(req,res) {
+		console.log("---------------------------------------------------------------------");
+		console.log((path.join(__dirname + '/client/' + req.params.fileName);
+		console.log("---------------------------------------------------------------------");
    	res.sendFile(path.join(__dirname + '/client/' + req.params.fileName));
 });
 
