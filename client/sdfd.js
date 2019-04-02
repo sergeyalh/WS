@@ -59,15 +59,16 @@ function saveItem() {
         console.log("Entity Saved in the DB !!")
     })
     .done(function() {
-        var rowTr$ = $('<tr/>');
-
-        rowTr$.append($('<td class="removeIcon"/>').html("<i class=\"far fa-window-close\" onclick=\"deleteItem(this)\"> </i>"));
-        rowTr$.append($('<td/>').html(oNewEntity.type));
-        rowTr$.append($('<td/>').html(oNewEntity.name));
-        rowTr$.append($('<td/>').html(oNewEntity.year));
-        rowTr$.append($('<td/>').html(oNewEntity.description));
-
-        $('#myTable').append(rowTr$);
+        let newRow = '<tr>' + 
+            + '<td class="removeIcon">' + "<i class=\"far fa-window-close\" onclick=\"deleteItem(this)\"> </i> </td>" +
+            + '<td>' + oNewEntity.type + "</td>" +
+            + '<td>' + oNewEntity.name + "</td>" +
+            + '<td>' + oNewEntity.year + "</td>" +
+            + '<td>' + oNewEntity.description + "</td>" +
+        '</tr>'
+       
+        var tableRef = document.getElementById('myTable').getElementsByTagName('tbody')[0];
+        tableRef.innerHTML += newRow;
     })
     .fail(function() {
         console.log("Faild to Save in the DB !!")
@@ -77,34 +78,39 @@ function saveItem() {
 }
 
 function buildHtmlTable(myList, selector) {
-    aBuildHeaders(myList, selector);
+    let prefoCount = performance.now();
+
     let categoris = Object.keys(myList);
     let columns = ["name", "year","description"];    
+    let sInnerHtml = "";
 
-   for (var i = 0; i < categoris.length; i++) {
+    for (var i = 0; i < categoris.length; i++) {
         var aItemsInCat = myList[categoris[i]];
         for (var j = 0; j < aItemsInCat.length; j++) {
-            var rowTr$ = $('<tr/>');
-            rowTr$.append($('<td class="removeIcon"/>').html("<i class=\"far fa-window-close\" onclick=\"deleteItem(this)\"> </i>"));
-            rowTr$.append($('<td/>').html(categoris[i]));
+            sInnerHtml = sInnerHtml + '<tr>' + '<td class=\"removeIcon\">' + '<i class=\"far fa-window-close\" onclick=\"deleteItem(this)\"' + 
+            '</i>' + '</td>' + '<td>' + categoris[i] + '</td>';
+
             for (var z = 0; z < columns.length; z++) {
-                rowTr$.append($('<td/>').html(aItemsInCat[j][columns[z]]));
+                sInnerHtml = sInnerHtml + '<td>' + aItemsInCat[j][columns[z]] + '</td>';
             }
-            $(selector).append(rowTr$);
+
+            sInnerHtml = sInnerHtml + '<tr/>';
         }
-        
     }
+
+    var tableRef = document.getElementById('myTable').getElementsByTagName('tbody')[0];
+    tableRef.innerHTML = "<tr><th class=\"removeIcon\"></th><th>category</th><th>name</th><th>year</th><th>description</th></tr>" + sInnerHtml;
+
+    let prefoCountEnd = performance.now();
+    console.log("Built the table in: " + (prefoCountEnd - prefoCount) + " milliseconds");
 }
 
-function aBuildHeaders(myList, selector) {
-    let categoris = Object.keys(myList);
-    let columns = ["name", "year","description"];     
-    var headerTr$ = $('<tr/>');
-    headerTr$.append($('<th class="removeIcon"/>').html(""));
-    headerTr$.append($('<th/>').html("category"));
-    for (var i = 0; i < columns.length; i++) {
-        var rowHash = columns[i];
-        headerTr$.append($('<th/>').html(rowHash));
-    }
-    $(selector).append(headerTr$);
+function renderRow(rowValues) {
+    return `
+    <tr>
+        <td class="removeIcon"> <i class=\"far fa-window-close\" onclick=\"deleteItem(this)\"> </i> </td>
+        ${rowValues.map(rowValues => `<td>${value}</td>`)}
+    </tr>
+    `;
 }
+
