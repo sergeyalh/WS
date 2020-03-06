@@ -38,6 +38,11 @@ app.get('/:fileName',function(req,res) {
    	res.sendFile(path.join(__dirname + '/client/' + req.params.fileName));
 });
 
+// React
+app.get('/react/:fileName',function(req,res) {
+	res.sendFile(path.join(__dirname + '/client-react/' + req.params.fileName));
+});
+
 app.delete('/delete/:type/:name',function(req,res) {
    	console.log("DELETE " + req.params.type + " " + req.params.name);
    	let aFilterdArray = store[req.params.type].filter(function(el) { return el.name != req.params.name; });
