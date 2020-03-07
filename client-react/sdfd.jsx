@@ -42,6 +42,7 @@ class Table extends React.Component {
       items: []
     };
     this.delete = this.delete.bind(this);
+    this.add = this.add.bind(this);
   }
   delete(name, type){    
     $.ajax({
@@ -58,8 +59,10 @@ class Table extends React.Component {
         this.setState({
           items: aRemovedRowItems
         });
-    }.bind(this));
-    
+    }.bind(this)); 
+  }
+  add(name, type){    
+    alert("add pressed!!");
   }
   componentDidMount() {
     fetch("/items")
