@@ -21,5 +21,10 @@
     "express": "*",
     "body-parser": "*",
     "bcrypt": "*"
+  },
+  "devDependencies": {
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babelify": "^10.0.0"
   }
 }
