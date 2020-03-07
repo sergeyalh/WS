@@ -18,7 +18,7 @@ class TableColums extends React.Component {
 
 class TableRow extends React.Component {
   delete(){
-    this.props.delete(this.props.item.name);
+    this.props.delete(this.props.item.name, this.props.item.category);
   }
   render() {
     return (            
@@ -43,12 +43,23 @@ class Table extends React.Component {
     };
     this.delete = this.delete.bind(this);
   }
-  delete(id){
-    const aRemovedRowItems = this.state.items.filter(el => el.name != id ) 
-    this.setState({
-      items: aRemovedRowItems
-    });
-    alert(id);
+  delete(name, type){    
+    $.ajax({
+        url: '/delete/' + type + "/" + name,
+        type: 'DELETE',
+        success: function(result) {
+           console.log("Entity Deleted from the DB !!")
+        },
+        error: function(result) {
+          console.log("Entity Dailed to be deleted from the DB !!")
+       }
+    }).done(function() {
+        const aRemovedRowItems = this.state.items.filter(el => el.name != name ) 
+        this.setState({
+          items: aRemovedRowItems
+        });
+    }.bind(this));
+    
   }
   componentDidMount() {
     fetch("/items")
@@ -103,28 +114,6 @@ function handelTableItemsResult(oItems) {
   return aTableItems;
 }
 
-function deleteItem(oEvent) {
-  let theTD = oEvent.parentNode;
-  var theParentTR = theTD.parentNode;
-  let theType = theParentTR.cells[1].innerText;
-  let theName = theParentTR.cells[2].innerText;
-  
-  $.ajax({
-      url: '/delete/' + theType + "/" + theName,
-      type: 'DELETE',
-      success: function(result) {
-         console.log("Entity Deleted from the DB !!")
-      }
-  })
-  .done(function() {
-      theParentTR.remove();
-  })
-  .fail(function() {
-      console.log("Faild to delete from the DB !!")
-  })
-  .always(function() {
-  });
-}
 
 const domContainer = document.querySelector('#wrapper');
 ReactDOM.render(e(Table), domContainer);
